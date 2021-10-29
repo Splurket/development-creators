@@ -78,8 +78,10 @@
               <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4" style="color: white;" id="cover-drop">
                 <label for="cover-drop">Upload Cover Image
               </label>
-                <div class="tm-product-img-dummy mx-auto" id="imgr_pic">
+                <div class="tm-product-img-dummy mx-auto" id="imgr_pic" style="overflow: scroll;"> 
+                    <!-- Overscroll for multiple images -->
                   <i class="fas fa-cloud-upload-alt tm-upload-icon" id="prickpic" onclick="document.getElementById('fileInput').click();"></i>
+                              
                 </div>
                 <div class="custom-file mt-3 mb-3">
                   <div class="dropzone">
@@ -210,8 +212,10 @@ var firebaseConfig = {
   var ref = firebase.storage().ref();
 
 //Handle Image Upload
+get_link=[]; //Array for image links
 function imagelink(get_link1){
-  get_link = get_link1;
+  // get_link = get_link1;
+  get_link.push(get_link1)//Add image link to array
 }
 
 

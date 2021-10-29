@@ -4,7 +4,7 @@ function reportInfo(vars, showType = false) {
 }
 
 function addImg(ele, content) {
-    document.getElementById('prickpic').style.display = "none"
+    document.getElementById('prickpic').style.display = "none" //Hide upload icon
     var myDIV = document.getElementById('imgr_pic');
     var newContent = document.createElement('div');
     newContent.innerHTML = content;
@@ -20,14 +20,16 @@ var feedback = function(res) {
         var get_link = res.data.link.replace(/^http:\/\//i, 'https://');
         document.querySelector('.status').classList.add('bg-success');
         var content =
-'<br><input style="display:none;" class="image-url" id="imglink" onchange="imagelink(this.value)" value=\"' + get_link + '\"/>' 
-             + '<center><img class="img" width = "537px" height="240px" alt="Imgur-Upload" src=\"' + get_link + '\"/></center><br>';
+        '<br><input style="display:none;" class="image-url" id="imglink" onchange="imagelink(this.value)" value=\"' + get_link + '\"/>' 
+             + '<center><img class="img" width = "537px" height="240px" alt="Imgur-Upload" src=\"' + get_link + '\"/></center><br>';   
         addImg('.status', content);
         imagelink(get_link)
     }
 };
 
 new Imgur({
-    clientid: '4409588f10776f7', //You can change this ClientID
+    // clientid: '4409588f10776f7', //You can change this ClientID
+    clientid: 'f7739388284f70e',//Madhur's client ID for testing purpose
     callback: feedback
 });
+
