@@ -78,8 +78,10 @@
               <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4" style="color: white;" id="cover-drop">
                 <label for="cover-drop">Upload Cover Image
               </label>
-                <div class="tm-product-img-dummy mx-auto" id="imgr_pic">
+                <div class="tm-product-img-dummy mx-auto" id="imgr_pic" style="overflow: scroll;"> 
+                    <!-- Overscroll for multiple images -->
                   <i class="fas fa-cloud-upload-alt tm-upload-icon" id="prickpic" onclick="document.getElementById('fileInput').click();"></i>
+                              
                 </div>
                 <div class="custom-file mt-3 mb-3">
                   <div class="dropzone">
@@ -210,8 +212,10 @@ var firebaseConfig = {
   var ref = firebase.storage().ref();
 
 //Handle Image Upload
+get_link=[]; //Array for image links
 function imagelink(get_link1){
-  get_link = get_link1;
+  // get_link = get_link1;
+  get_link.push(get_link1)//Add image link to array
 }
 
 
@@ -292,8 +296,14 @@ function Addproduct() {
            var product_subcategory = "";
 }
 
-
-  var product_cover = get_link;
+//Uploaded images
+  var product_cover = get_link[0];//first image is cover image
+  if(get_link.length>1){
+    var product_images= get_link.filter((link,index)=> index!=0); //images other than cover image
+  }
+  else{
+    var product_images = product_cover; // If only one image is uploaded 
+  }
 
   var product_downloadlink = document.getElementById('DownloadLink').value;
        if(typeof product_downloadlink == 'undefined'){
@@ -398,6 +408,7 @@ myHeaders.append("Cookie", "S=maestro=Edzv86W03SwtORV9CaYWIfBCC__m5B0LOXQ709hO2Z
                     "product_category": product_category,
                     "product_subcategory": product_subcategory,
                     "product_cover": product_cover,
+                    "product_images":product_images,
                     "product_downloadlink": product_downloadlink,
                     "product_ship_selection": product_ship_selection,
                     "product_ship_template": product_ship_template,
