@@ -296,8 +296,14 @@ function Addproduct() {
            var product_subcategory = "";
 }
 
-
-  var product_cover = get_link;
+//Uploaded images
+  var product_cover = get_link[0];//first image is cover image
+  if(get_link.length>1){
+    var product_images= get_link.filter((link,index)=> index!=0); //images other than cover image
+  }
+  else{
+    var product_images = product_cover; // If only one image is uploaded 
+  }
 
   var product_downloadlink = document.getElementById('DownloadLink').value;
        if(typeof product_downloadlink == 'undefined'){
@@ -402,6 +408,7 @@ myHeaders.append("Cookie", "S=maestro=Edzv86W03SwtORV9CaYWIfBCC__m5B0LOXQ709hO2Z
                     "product_category": product_category,
                     "product_subcategory": product_subcategory,
                     "product_cover": product_cover,
+                    "product_images":product_images,
                     "product_downloadlink": product_downloadlink,
                     "product_ship_selection": product_ship_selection,
                     "product_ship_template": product_ship_template,
