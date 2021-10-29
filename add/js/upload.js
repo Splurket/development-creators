@@ -28,8 +28,7 @@ var feedback = function(res) {
 };
 
 new Imgur({
-    // clientid: '4409588f10776f7', //You can change this ClientID
-    clientid: 'f7739388284f70e',//Madhur's client ID for testing purpose
+    clientid: '4409588f10776f7', //You can change this ClientID
     callback: feedback
 });
 
